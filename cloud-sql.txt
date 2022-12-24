@@ -1,0 +1,61 @@
+Creating a Database and Table with Cloud SQL
+Introduction
+Selecting the right type of instance to handle your data is a very important step. Just as important is creating the database and table to structure that data. In this hands-on lab, we will learn how to create a Cloud SQL database instance, create a database within that instance, and create a database table to structure the data.
+
+How to Log in to Google Lab Accounts
+On the lab page, right-click Open GCP Console and select the option to open it in a new private browser window (this option will read differently depending on your browser — e.g., in Chrome, it says "Open Link in Incognito Window"). Then, sign in to Google Cloud Platform using the credentials provided on the lab page.
+
+On the Welcome to your new account screen, review the text, and click Accept. In the "Welcome Cloud Student ... !" pop-up once you're signed in, check to agree to the terms of service, choose your country of residence, and click Agree and Continue.
+
+Create a MySQL Cloud SQL Instance
+From the main console navigation, head over to SQL.
+
+Click Create instance.
+
+Choose MySQL.
+
+Set the following values:
+
+Instance ID: game-instance
+Password: 12345
+Database version: MySQL 5.7
+Choose a configuration to start with: Development
+Choose region and zonal availability > SPECIFY ZONES > Primary zone: us-central1-a
+Customize your instance > SHOW CONFIGURATION OPTIONS > Machine Type: Standard
+Click CREATE INSTANCE. It can take up to 15 minutes for it to finish being created.
+
+Connect to the Instance Using the Google Cloud Shell
+Click on your newly created instance.
+
+In the Connect to this instance section, click OPEN CLOUD SHELL.
+
+Once connected, you will be prompted with a gcloud command:
+
+gcloud sql connect game-instance  --user=root --quiet
+Click AUTHORIZE to authorize Cloud Shell to make GCP API calls.
+
+Since you just enabled the API, wait a few minutes for the action to propagate and retry the gcloud sql connect command until it succeeds. You may have to click the link provided in the PERMISSION DENIED message and ENABLE the Cloud SQL Admin API.
+
+Enter your password.
+
+You are now connected to the MySQL instance once you see the mysql> prompt.
+
+Create a Database and Table Within the Cloud SQL Instance
+Check out any databases that were created within your instance:
+
+SHOW DATABASES;
+Create a new database:
+
+CREATE DATABASE gaming;
+Verify that the database was created:
+
+SHOW DATABASES;
+Use the gaming database to create a new table within it:
+
+USE gaming;
+Create a table and structure the data within the table:
+
+CREATE TABLE games (name VARCHAR(20), system VARCHAR(15), date DATE);
+Verify the table was created within the database:
+
+SHOW TABLES;
